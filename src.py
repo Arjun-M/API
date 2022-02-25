@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 import json , requests
 
-BGS = [
+BACKGROUNDS = [
        "./assets/background/A.jpg", "./assets/background/L.jpg", "./assets/background/m.jpg", "./assets/background/n.jpg",
        "./assets/background/o.jpg", "./assets/background/R.jpg", "./assets/background/s.jpg", "./assets/background/t.jpg",
        "./assets/background/U.jpg", "./assets/background/as.jpg","./assets/background/ad.jpg", "./assets/background/af.jpg", 
@@ -9,7 +9,7 @@ BGS = [
        "./assets/background/al.jpg", "./assets/background/az.jpg", "./assets/background/ax.jpg"
       ]
 
-Fnt =[
+FONTS =[
       "./assets/fonts/Illegal Curves Bold.otf", "./assets/fonts/Martyric_PersonalUse.ttf", "./assets/fonts/Neon machine.otf", "./assets/fonts/Neon machine.ttf",
       "./assets/fonts/Revolvingdor.otf", "./assets/fonts/Ace Records.ttf", "./assets/fonts/Dry Brush.ttf", "./assets/fonts/Emberclaws.ttf",
       "./assets/fonts/Fast Hand(1).otf",  "./assets/fonts/Martyric_PersonalUse.ttf", "./assets/fonts/Revolvingdor.otf", "./assets/fonts/thunderstrike.ttf",
@@ -19,7 +19,7 @@ Fnt =[
       "./assets/fonts/Zenzai Itachi.ttf"
      ]
 
-class API:
+class mainSERVER:
     def __init__(self, log = False):
         self.log = log
         
