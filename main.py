@@ -15,7 +15,7 @@ def image(text):
   try:
     logo = mainSERVER(True)
     img = logo.createLogo(text)
-    return send_file(img )
+    return send_file(img , mimetype= "image/jpeg")
   except Exception as e:
     return str(e)
   
