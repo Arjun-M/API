@@ -17,7 +17,7 @@ def image():
     return str(e)
 
   
-@app.route('/image', methods=['GET'])
+@app.route('/image2', methods=['GET'])
 def image():
   try:
     f = open( "./assets/IMG_20220224_200511_453.jpg" , 'r')
