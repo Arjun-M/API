@@ -18,7 +18,7 @@ def image():
 
   
 @app.route('/image2', methods=['GET'])
-def image():
+def image22():
   try:
     f = open( "./assets/IMG_20220224_200511_453.jpg" , 'r')
     return send_file(f)
