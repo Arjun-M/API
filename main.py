@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory , jsonify, request
+from flask import Flask, send_file , jsonify, request
 from deta import Drive
 
 app = Flask(__name__)
@@ -12,7 +12,7 @@ def home():
 @app.route('/image', methods=['GET'])
 def image():
   try:
-    return send_from_directory(path = "/assets/IMG_20220224_200511_453.jpg")
+    return send_file("/assets/IMG_20220224_200511_453.jpg")
   except Exception as e:
     return str(e)
 
