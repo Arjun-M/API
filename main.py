@@ -11,7 +11,10 @@ def home():
 
 @app.route('/image', methods=['GET'])
 def image():
-  return send_from_directory("assets/IMG_20220224_200511_453.jpg")
+  try:
+    return send_from_directory("/assets/IMG_20220224_200511_453.jpg")
+  except Exception as e:
+    return str(e)
 
 #files.get(name)
 #files.list()
