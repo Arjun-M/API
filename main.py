@@ -17,15 +17,6 @@ def image():
     return str(e)
 
   
-@app.route('/image2', methods=['GET'])
-def image22():
-  try:
-    f = open( "./assets/IMG_20220224_200511_453.jpg" , 'r')
-    return send_file(f)
-  except Exception as e:
-    return str(e)
-  
-  
 #files.get(name)
 #files.list()
 #files.put(file.filename, file.file)
