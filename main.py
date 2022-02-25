@@ -12,7 +12,7 @@ def home():
 @app.route('/image', methods=['GET'])
 def image():
   try:
-    return send_from_directory("/assets/IMG_20220224_200511_453.jpg")
+    return send_from_directory(path = "/assets/IMG_20220224_200511_453.jpg")
   except Exception as e:
     return str(e)
 
