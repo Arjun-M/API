@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from PIL import Image, ImageDraw, ImageFont
 from src import mainSERVER , FONTS , BACKGROUNDS
-import os
+import os , random
 
 app = FastAPI()
 
