@@ -10,7 +10,7 @@ disk = Drive("Disk")
 
 
 @app.get("/")
-async def helloname(name:str):
+async def helloname():
   return f"Hello 👋"  
 
 
@@ -30,9 +30,9 @@ async def logo(text:str):
   draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
   x = (image_widthz-w)/2
   y= ((image_heightz-h)/2+6)
-  draw.text((x, y), text, font=font, fill="white", stroke_width=15, stroke_fill="black")  
-  return StreamingResponse( img , media_type="image/jpeg")        
-
+  draw.text((x, y), text, font=font, fill="white", stroke_width=15, stroke_fill="black")
+  img.save("./assets/10101.jpeg")
+  return StreamingResponse( "./assets/10101.jpeg" , media_type="image/jpeg")        
   
   
 #files.get(name)
