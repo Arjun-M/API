@@ -1,5 +1,4 @@
 fastapi
-deta
 Pillow>=4.2.0
 fontTools
 requests 
