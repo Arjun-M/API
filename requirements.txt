@@ -1,6 +1,5 @@
-fastapi
 Pillow>=4.2.0
 fontTools
 requests 
-uvicorn
+Flask
 gunicorn
