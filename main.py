@@ -1,19 +1,18 @@
-from fastapi import FastAPI
-from fastapi.responses import StreamingResponse
+from flask import Flask, request ,jsonify , redirect  ,send_file
 from PIL import Image, ImageDraw, ImageFont
 from src import mainSERVER , FONTS , BACKGROUNDS
 import os , random
 
-app = FastAPI()
+app = Flask(__name__)
 
 
-@app.get("/")
-async def helloname():
+@app.route("/" , methods=['GET'])
+def helloname():
   return f"Hello 👋"  
 
 
-@app.get("/logo/{text}")
-async def logo(text:str):
+@app.route('/logo/<text>', methods=['GET'])
+def logo(text):
   img = Image.open(random.choice(BACKGROUNDS))
   draw = ImageDraw.Draw(img)
   image_widthz, image_heightz = img.size
@@ -30,7 +29,7 @@ async def logo(text:str):
   y= ((image_heightz-h)/2+6)
   draw.text((x, y), text, font=font, fill="white", stroke_width=15, stroke_fill="black")
   img.save("./assets/10101.jpeg")
-  return StreamingResponse( "./assets/10101.jpeg" , media_type="image/jpeg")        
+  return send_file( "./assets/10101.jpeg" , media_type="image/jpeg")        
   
   
 #files.get(name)
