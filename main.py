@@ -1,18 +1,21 @@
-from flask import Flask, send_file , jsonify, request
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
 from PIL import Image, ImageDraw, ImageFont
 from deta import Drive
 from src import mainSERVER , FONTS , BACKGROUNDS
+import os
 
-app = Flask(__name__)
+app = FastAPI()
 disk = Drive("Disk")
 
-@app.route('/', methods=['GET'])
-def home():
-  return "<b> Hello World </b>"
+
+@app.get("/")
+async def helloname(name:str):
+  return f"Hello 👋"  
 
 
-@app.route('/logo/<text>', methods=['GET'])
-def image(text):
+@app.get("/logo/{text}")
+async def logo(text:str):
   img = Image.open(random.choice(BACKGROUNDS))
   draw = ImageDraw.Draw(img)
   image_widthz, image_heightz = img.size
@@ -27,11 +30,9 @@ def image(text):
   draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
   x = (image_widthz-w)/2
   y= ((image_heightz-h)/2+6)
-  draw.text((x, y), text, font=font, fill="white", stroke_width=15, stroke_fill="black")
-  return send_file ( img )        
-  
+  draw.text((x, y), text, font=font, fill="white", stroke_width=15, stroke_fill="black")  
+  return StreamingResponse( img , media_type="image/jpeg")        
 
-  
   
   
 #files.get(name)
