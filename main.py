@@ -4,7 +4,7 @@ from src import mainSERVER , FONTS , BACKGROUNDS
 import os , random , string
 
 app = Flask(__name__)
-api = mainSERVER (True)
+api = mainSERVER (logs = False) # don't  log .
 host = os.getenv('HOST', "logo-000-api.herokuapp.com" )
 logos = [] 
 
