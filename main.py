@@ -1,12 +1,10 @@
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from PIL import Image, ImageDraw, ImageFont
-from deta import Drive
 from src import mainSERVER , FONTS , BACKGROUNDS
 import os
 
 app = FastAPI()
-disk = Drive("Disk")
 
 
 @app.get("/")
