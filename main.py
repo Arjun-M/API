@@ -5,7 +5,7 @@ from src import FONTS , BACKGROUNDS ,randomString
 import os , random , string , json
 
 app = FastAPI()
-client = TelegramClient( token= TOKEN )
+client = TelegramClient( token= "5161532146:AAHwSF3PruBpjMpuGkRNBQAmDhX7cIuv_2M" )
 Bot = createConnection( client = client )
 
 @client.messageHandler( commands= ["/start" , "/help"] )
