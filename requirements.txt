@@ -1,5 +1,5 @@
 Pillow>=4.2.0
 fontTools
 requests 
-Flask
-gunicorn
+FastAPI 
+git+https://github.com/Arjun-M/pyTelegramClient.git
