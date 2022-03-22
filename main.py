@@ -4,46 +4,10 @@ from src import mainSERVER , FONTS , BACKGROUNDS
 import os , random , string
 
 app = Flask(__name__)
-api = mainSERVER (logs = False) # don't  log .
-host = os.getenv('HOST', "logo-000-api.herokuapp.com" )
 logos = [] 
 
-
-@app.route("/" , methods=['GET'])
-def helloname():
-  return f"Hello 👋"  
-
-
-@app.route("/logo/list" , methods=['GET'])
-def debug_logo_list():
-  return jsonify ({"ok": True , "result": {"list": logos}})
-
-# API debug "/logo/clean" has bugs .
-"""
-@app.route("/logo/clean" , methods=['GET'])
-def debug_logo_clean():
-  cleaned = 0
-  error = 0
-  for x in logos :
-    try:
-      cleaned += 1
-      os.remove("./assets/"+x["string"]+".jpeg")
-    except:
-      error += 1
-  logos = []
-  return jsonify ({ "ok" : True , "result":{ "cleaned": cleaned , "error": error} })
-"""
-
-
-@app.route('/image/<file>', methods=['GET'])
-def send_logo(file):
-  try:
-    return send_file( f"./assets/{file}.jpeg" , mimetype='image/jpeg')  
-  except Exception as e:
-    print("Send Logo Error : "+ str(e) )
-    return send_file( random.choice(BACKGROUNDS) , mimetype= 'image/jpeg' )
   
-
+"""
 @app.route('/logo', methods=['GET'])
 def logo():
   try:
@@ -72,4 +36,4 @@ def logo():
     #return send_file( "./assets/10101.jpeg" , mimetype='image/jpeg')  
   except Exception as e:
     return jsonify ({"ok":False , "error": str(e) })
-    
+"""
