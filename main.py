@@ -34,8 +34,8 @@ def echo( request ):
     y= ((image_heightz-h)/2+6)
     draw.text((x, y), text, font=font, fill="white", stroke_width=15, stroke_fill="black")
     img.save(f"/temp/{user}.jpeg")
-    
-    Bot.sendPhoto (user , photo= f"/temp/{user}.jpeg" , caption="* *", parse_mode="Markdown",  reply_markup= markup)
+    with open(f"/temp/{user}.jpeg", 'rb') as f:
+        Bot.sendPhoto (user , photo= f , caption="* *", parse_mode="Markdown",  reply_markup= markup)
     return
 
 @app.post("/hook")
