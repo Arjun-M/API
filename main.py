@@ -1,12 +1,49 @@
-from flask import Flask, request ,jsonify , redirect  ,send_file
+from fastapi import Request, FastAPI
 from PIL import Image, ImageDraw, ImageFont
-from src import mainSERVER , FONTS , BACKGROUNDS 
-import os , random , string
+from pyTelegramClient import TelegramClient,  createConnection 
+from src import FONTS , BACKGROUNDS ,randomString
+import os , random , string , json
 
-app = Flask(__name__)
-logos = [] 
+app = FastAPI()
+client = TelegramClient( token= TOKEN )
+Bot = createConnection( client = client )
 
-  
+@client.messageHandler( commands= ["/start" , "/help"] )
+def start( request ):
+    markup = json.dumps( {"inline_keyboard": [[{ "text":"👨‍✈️ Developer" , "url":"t.me/itz_ArjunM" }]] } ) 
+    Bot.sendMessage( request["user"]["id"], "Hello! i can create awsome logo's for you\n\nJust sent the text for the logo ." , parse_mode = "Markdown" , allow_sending_without_reply=True , reply_to_message_id = request["message_id"] , reply_markup=markup )   
+    return 
+
+@client.messageHandler( regexp = "(.*?)" )
+def echo( request ):
+    user = request["user"]["id"]
+    Bot.sendMessage( user , "Creating your logo... wait !" , allow_sending_without_reply=True , reply_to_message_id = request["message_id"])
+    img = Image.open(random.choice(BACKGROUNDS))
+    draw = ImageDraw.Draw(img)
+    image_widthz, image_heightz = img.size
+    pointsize = 500
+    fillcolor = "gold"
+    shadowcolor = "blue"
+    semx = random.choice(FONTS)
+    font = ImageFont.truetype(semx, 150)
+    w, h = draw.textsize(text, font=font)
+    h += int(h*0.21)
+    image_width, image_height = img.size
+    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
+    x = (image_widthz-w)/2
+    y= ((image_heightz-h)/2+6)
+    draw.text((x, y), text, font=font, fill="white", stroke_width=15, stroke_fill="black")
+    img.save(f"/temp/{user}.jpeg")
+    
+    Bot.sendPhoto (user , photo= f"/temp/{user}.jpeg" , caption="* *", parse_mode="Markdown",  reply_markup= markup)
+    return
+
+@app.post("/hook")
+async def get_body(request: Request):
+    body = await request.json()
+    client.processUpdate( body )
+    return "OK"
+
 """
 @app.route('/logo', methods=['GET'])
 def logo():
