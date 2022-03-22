@@ -40,7 +40,7 @@ def echo( request ):
 
 @app.post("/hook")
 async def get_body(request: Request):
-    body = await request.json()
+    body = await request.body()
     client.processUpdate( body )
     return "OK"
 
