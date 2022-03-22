@@ -1,5 +1,4 @@
-from PIL import Image, ImageDraw, ImageFont
-import json , requests , random, re , string
+import random, string
 
 BACKGROUNDS = [
        "./assets/background/A.jpg", "./assets/background/L.jpg", "./assets/background/m.jpg", "./assets/background/n.jpg",
@@ -19,10 +18,6 @@ FONTS =[
       "./assets/fonts/Zenzai Itachi.ttf"
      ]
 
-class mainSERVER:
-    def init(self, log = False):
-        self.log = log
-        
-    def randomString(self , length ):
-       letters = string.ascii_lowercase
-       return ''.join(random.choice(letters) for i in range(length))
+def randomString(length ):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(length))
